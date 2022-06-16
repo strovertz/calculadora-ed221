@@ -37,6 +37,7 @@ void calc_operando (Pilha* p, char v[10]){
     float x;
     char c = 't';
     x = atof(v);
+    p->prim->tipo = true;
     pilha_push(p, c, x); ///∗ empilha operando ∗/
 
     printf("%f", p->prim->operando); ///∗ imprime topo da p i l h a ∗/
@@ -76,6 +77,7 @@ void calc_operador(Pilha* p, char op) {
             case '/': v = v1/v2; break ;
         }
     }
+    p->prim->tipo = false;
     if (decisao == 'e') {
         pilha_push(p, op, v);
     } 

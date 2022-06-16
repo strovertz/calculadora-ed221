@@ -15,6 +15,7 @@ Pilha* pilha_cria (){
 
 void pilha_push(Pilha* p, char v, float x) {
     Data_t* n = (Data_t*) malloc(sizeof(Data_t));
+    n = p->prim;
     if (n->tipo == true){
         n->operando = x;
     }
