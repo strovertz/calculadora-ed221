@@ -26,12 +26,13 @@ void pilha_push(Pilha* p, char v, float x) {
 float pilha_pop (Pilha* p) {
     Data_t *t = p->prim;
     float v;
-    char m;
+    char op;
     if (t->tipo == true) v = t->operando;
-    if (t->tipo == false) m = t->operador;
+    if (t->tipo == false) op = t->operador;
     p->prim = t->prox;
     free(t);
-    return v;
+    if (v < 0 || v > 10000) return op;
+    else return v;
 }
 
 bool pilha_vazia(Pilha* p) {

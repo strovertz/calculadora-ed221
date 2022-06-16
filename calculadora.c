@@ -35,7 +35,7 @@ char opera_ou_empilha(char operador_topo, char entrada){
 void calc_operando (Pilha* p, char v[10]){
 
     float x;
-    char c;
+    char c = 't';
     x = atof(v);
     pilha_push(p, c, x); ///∗ empilha operando ∗/
 
