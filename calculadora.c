@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <stdbool.h>
+#include <math.h>
 #include "calculadora.h"
 
 
@@ -75,6 +76,8 @@ void calc_operador(Pilha* p, char op) {
             case '*': v = v1*v2; break ;
 
             case '/': v = v1/v2; break ;
+
+            case '^': v = pow(v1, v2); break;
         }
     }
     p->prim->tipo = false;
