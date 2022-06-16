@@ -3,6 +3,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "interface.h"
+#include "pilha.h"
 
 bool teste_tipo(char x){
      if(x != '*' && x != '+' && x != '-' && x != '^' && x != '/' && x != '(' && x != ')') return true;
@@ -11,6 +12,7 @@ bool teste_tipo(char x){
 
 void le_string(){
 
+    Pilha* p = pilha_cria();
     char leitura[30];
     char operador;
     char operando[10];
