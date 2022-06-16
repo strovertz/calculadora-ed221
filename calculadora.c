@@ -48,16 +48,16 @@ void calc_operando (Pilha* p, char v[10]){
 void calc_operador(Pilha* p, char op) {
 
     ///∗ d e s e m p i lh a operandos 
-    float f;
+    //float f;
 
     char operador_topo;
 
     operador_topo = p->prim->operador;
     char decisao = opera_ou_empilha(operador_topo, op);
     
-    float v2 = pilha_vazia(p) ? 0.0 : f ; pilha_pop(p);
+    float v2 = pilha_vazia(p) ? 0.0 : pilha_pop(p);
 
-    float v1 = pilha_vazia(p) ? 0.0 : f ; pilha_pop(p);
+    float v1 = pilha_vazia(p) ? 0.0 : pilha_pop(p);
 
     ///∗ faz operação ∗/
 

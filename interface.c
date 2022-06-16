@@ -20,7 +20,7 @@ void le_string(){
     tam = strlen(leitura);
     for(int i =0; i<tam;) {
         while(teste_tipo(leitura[i]) == true){
-            strcat(operando[i], leitura[i]);
+            strcat(operando, leitura);
             calc_operando(p, operando);
             i++;
         }
