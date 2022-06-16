@@ -5,8 +5,6 @@
 #include "calculadora.h"
 
 
-5+36*100
-
 char opera_ou_empilha(char operador_topo, char entrada){
     char operacoes[8][8] = {{'.','+','-','*','/','^','(',')'},
                            {'+','o','o','e','e','e','e','o'},
@@ -34,11 +32,12 @@ char opera_ou_empilha(char operador_topo, char entrada){
     return operacoes[x][y];
 }
 
-void calc_operando (Pilha* p, char v){
+void calc_operando (Pilha* p, char v[10]){
 
     float x;
+    char c;
     x = atof(v);
-    pilha_push(p, v, x); ///∗ empilha operando ∗/
+    pilha_push(p, c, x); ///∗ empilha operando ∗/
 
     printf("%f", p->prim->operando); ///∗ imprime topo da p i l h a ∗/
 
@@ -47,7 +46,7 @@ void calc_operando (Pilha* p, char v){
 void calc_operador(Pilha* p, char op) {
 
     ///∗ d e s e m p i lh a operandos 
-    const float f;
+    float f;
 
     char operador_topo;
 
@@ -64,7 +63,7 @@ void calc_operador(Pilha* p, char op) {
 
     if(decisao == 'o') {
         calc_operador(p, operador_topo);
-        strcpy(p->prim->operador, op);
+        p->prim->operador = op;
         
         switch (op) {
 

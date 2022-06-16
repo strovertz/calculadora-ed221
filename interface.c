@@ -12,7 +12,7 @@ bool teste_tipo(char x){
 void le_string(){
 
     char leitura[30];
-    char operador[1];
+    char operador;
     char operando[10];
     printf("insira uma expressao");
     scanf("%s", leitura);
