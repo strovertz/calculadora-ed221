@@ -19,16 +19,13 @@ char opera_ou_empilha(char operador_topo, char entrada){
 
     if(entrada == 'Z') entrada = 'N';
 
-    for (int i = 1; i <7; i++) {
-        for (int j = 0; j < 8; j=j) {
-            if (entrada == operacoes[i][j]) x = i;
+    for (int j = 0; j < 8; j=j) {
+        if (entrada == operacoes[j][0]) x = j;
         }
-    }
-    for (int i = 1; i < 7; i=i) {
-        for (int j = 0; j < 8; j++) {
-            if(operador_topo == operacoes[i][j]) y = j;
+
+    for (int j = 0; j < 8; j++) {
+        if(operador_topo == operacoes[0][j]) y = j;
         }
-    }
     printf("Empilha ou Opera: %c", operacoes[x][y]);
     return operacoes[x][y];
 }
@@ -77,7 +74,14 @@ void calc_operador(Pilha* p, char op) {
 
             case '/': v = v1/v2; break ;
 
-            case '^': v = pow(v1, v2); break;
+            case '^':
+                int contador = 0;
+                v = v1;
+                while(contador != v2) {
+                   v = v * contador;
+                   contador++;
+                }
+                break;
         }
     }
     p->prim->tipo = false;

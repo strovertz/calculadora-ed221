@@ -17,8 +17,9 @@ void le_string(){
     char operador;
     char operando[10];
     printf("insira uma expressao");
-    scanf("%s", leitura);
+    //scanf("%s", leitura);
     int tam;
+    strcpy(leitura,"10+3");
     tam = strlen(leitura);
     for(int i =0; i<tam;) {
         while(teste_tipo(leitura[i]) == true){
