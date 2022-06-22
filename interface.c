@@ -5,7 +5,7 @@
 #include "pilha.h"
 
 bool teste_tipo(char x){
-     if(x != '*' && x != '+' && x != '-' && x != '^' && x != '/' && x != '(' && x != ')') return true;
+     if(x >= 0 && x < 10) return true;
      else return false;
 }
 
@@ -17,17 +17,18 @@ void le_string(){
     printf("insira uma expressao");
     //scanf("%s", leitura);
     int tam;
+    char tmp;
     strcpy(leitura,"10+3");
     tam = strlen(leitura);
-    for(int i = 0; i < tam;) {
+    for(int i = 0; i < tam; i++) {
         while(teste_tipo(leitura[i]) == true){
-            strcat(operando, leitura);
+            tmp = leitura[i];
+            strcat(operando, tmp);
             calc_operando(p, operando);
             i++;
         }
         operador = leitura[i];
         calc_operador(p, operador);
         operador = 'z';
-        i++;
     }   
 }
