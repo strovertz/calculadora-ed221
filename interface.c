@@ -17,13 +17,13 @@ void le_string(){
     printf("insira uma expressao");
     //scanf("%s", leitura);
     int tam;
-    char tmp;
+    char tmp[1];
     strcpy(leitura,"10+3");
     tam = strlen(leitura);
     for(int i = 0; i < tam; i++) {
         while(teste_tipo(leitura[i]) == true){
-            tmp = leitura[i];
-            strcat(operando, tmp);
+            tmp[0] = leitura[i];
+            strcat(operando, tmp[0]);
             calc_operando(p, operando);
             i++;
         }
