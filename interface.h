@@ -1,3 +1,7 @@
 #include "calculadora.h"
 
-le_valores();
+
+
+void le_string();
+
+

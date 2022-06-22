@@ -1,6 +1,9 @@
 #include <stdio.h>
 #include "interface.h"
 
-int main(){
-    le_valores();
+
+int main (void) {
+    while (1){
+        le_string();
+    }
 }

@@ -1,17 +1,10 @@
+#ifndef _CALCULADORA_H_    // para evitar a inclusão múltipla deste arquivo
+#define _CALCULADORA_H_
 #include "pilha.h"
 
-typedef struct calculadora Calc;
+void calc_operando (Pilha* p, char v[10]);
 
-struct calculadora {
-    char f[21];
-    Pilha* p; // pilha de operandos
-};
+void calc_operador (Pilha* p, char op);
 
 
-Calc* calc_cria (char * f);
-
-void calc_operando (Calc* c, float v, char entrada);
-
-void calc_operador (Calc* c, char op);
-
-void calc_libera (Calc* c);
+#endif // _CALCULADORA_H_

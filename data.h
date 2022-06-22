@@ -5,7 +5,7 @@ typedef struct data_t Data_t;
 
 typedef struct data_t  {
 
-    bool tipo; // if true, operando, if false, operador
+    int tipo; // if true, operando, if false, operador
     float operando;
     char operador;
     Data_t* prox;
