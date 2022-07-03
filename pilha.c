@@ -12,13 +12,13 @@ Pilha* pilha_cria (){
     return p;
 }
 
-void pilha_push(Pilha* p, char v, float x) {
+void pilha_push(Pilha* p, char v, float x, int tipo) {
     Data_t* n = (Data_t*) malloc(sizeof(Data_t));
     n = p->prim;
-    if (n->tipo == true){
+    if (n->tipo == 1){
         n->operando = x;
     }
-    if (n->tipo == false) n->operador = v;
+    if (n->tipo == 0) n->operador = v;
     n-> prox = p-> prim;
     p-> prim = n;
 }
