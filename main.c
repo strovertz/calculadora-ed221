@@ -4,6 +4,9 @@
 
 int main (void) {
     while (1){
-        le_string();
+        Pilha* num = pilha_cria();
+        Pilha* shar = pilha_cria();
+        printf("teste");
+        le_string(num, shar);
     }
 }

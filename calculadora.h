@@ -4,7 +4,7 @@
 
 void calc_operando (Pilha* p, char v[10]);
 
-void calc_operador (Pilha* p, char op);
+void calc_operador (Pilha* p, Pilha* n, char op);
 
 
 #endif // _CALCULADORA_H_

@@ -34,22 +34,22 @@ void calc_operando (Pilha* p, char v[10]){
 
     float x;
     char c = 't';
+
     x = atof(v);
-    p->prim->tipo = 1;
     pilha_push(p, c, x); ///∗ empilha operando ∗/
 
     printf("%f", p->prim->operando); ///∗ imprime topo da p i l h a ∗/
 
 }
 
-void calc_operador(Pilha* p, char op) {
+void calc_operador(Pilha* p, Pilha* n, char op) {
 
     ///∗ d e s e m p i lh a operandos 
     //float f;
 
     char operador_topo;
 
-    operador_topo = p->prim->operador;
+    operador_topo = p->prim->operador[0];
     char decisao = opera_ou_empilha(operador_topo, op);
     
     float v2 = pilha_vazia(p) ? 0.0 : pilha_pop(p);
@@ -59,10 +59,10 @@ void calc_operador(Pilha* p, char op) {
     ///∗ faz operação ∗/
 
     float v;
-
     if(decisao == 'o') {
-        calc_operador(p, operador_topo);
-        p->prim->operador = op;
+        calc_operador(p, n, operador_topo);
+     
+        p->prim->operador[0] = op;
         int contador;
         
         switch (op) {
@@ -85,12 +85,11 @@ void calc_operador(Pilha* p, char op) {
                 break;
         }
     }
-    p->prim->tipo = false;
+
     if (decisao == 'e') {
         pilha_push(p, op, v);
     } 
-
-    pilha_push(p,op,v); /// empilha resultado
+    pilha_push(n, op, v); /// empilha resultado
 
     printf("%f", p->prim->operando); ///∗ imprime topo da pilha
 }

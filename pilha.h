@@ -14,7 +14,7 @@ struct pilha {
 // cria uma pilha vazia
 Pilha* pilha_cria ();
 //empilha dado v no topo da pilha p
-void pilha_push (Pilha* p, char v, float x, int tipo);
+void pilha_push (Pilha* p, char v, float x);
 //remove e retorna o dado no topo da pilha p;
 float pilha_pop (Pilha* p);
 //retorna true se a pilha p não tiver dados -funcion ok
