@@ -5,6 +5,8 @@
 #include "interface.h"
 //#include "pilha.h"
 
+
+
 bool teste_tipo(char x){
      if((x >= 0 && x < 10) || x == '.') return true;
      else return false;
@@ -16,12 +18,11 @@ char* aloca_temp() {
 }
 
 void le_string(Pilha* n, Pilha* c){
-    char leitura[30];
+    char leitura[30] = "10*2";
     char operador;
     char operando[10];
     int tam;
     char *tmp = aloca_temp();
-    strcpy(leitura,"10+3");
     printf("leitura: %s", leitura);
     tam = strlen(leitura);
 
