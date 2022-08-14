@@ -6,11 +6,11 @@
 #include "interface.h"
 #define TM_EXP 60;
 
-char* aloca_temp() {
+/*char* aloca_temp() {
     char* tmp = malloc(200*sizeof(char));
     printf("loopa akq");
     return tmp;
-}
+}*/
 
 double calculadora(double num1, double num2, char op)
 {
@@ -116,7 +116,6 @@ double results(char operacao, Pilha *n, Pilha *c, Data_t ins, Data_t t, char *tm
             t = fraciona_exp(&tmp);
             break;
     }
-    return -1;
 }
 
 double le_string(char *exp){
