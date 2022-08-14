@@ -49,7 +49,8 @@ Data_t calculo(Pilha *n, char op){
     return result;
 }
 bool testa_tipos(char *t){
-    char j = *t;
+    int j;
+    j = atof(t);
     if(j >= 48 || j <=  57) return true;
     else return false;
 }
@@ -128,7 +129,8 @@ double le_string(char *exp){
     printf("chega aq");
     ins.operador = '&';
     pilha_push(c, ins);
-    char *tmp = exp;
+    char *tmp = malloc(100*sizeof(char));
+    tmp = exp;
     t = fraciona_exp(&tmp);
     
     while(1){
