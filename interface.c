@@ -122,7 +122,7 @@ double le_string(Pilha* n, Pilha* c, Data_t t){
                         printf("erro de falta de operadores\n");
                         exit(1);
                     }
-                    printf("%d", res);
+                    printf("%lf", res);
                     return res;
                 
                     pilha_libera(n);
