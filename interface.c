@@ -8,6 +8,7 @@
 
 char* aloca_temp() {
     char* tmp = malloc(200*sizeof(char));
+    printf("loopa akq");
     return tmp;
 }
 
@@ -47,22 +48,19 @@ Data_t calculo(Pilha *n, char op){
     //printf("teste: %lf", result.operando);
     return result;
 }
-bool testa_tipos(char t){
-    int j = t;
+bool testa_tipos(char *t){
+    char j = *t;
     if(j >= 48 || j <=  57) return true;
     else return false;
 }
 
 Data_t fraciona_exp(char **string){
     Data_t atm;
-    char *t = malloc(sizeof(*string));
-    strcpy(t, *string);
-    char j;
-    j = t[0];
-    if (testa_tipos(j) == true){
+    char *t = *string;
+    if (testa_tipos(t)){
         atm.type = true; 
         atm.operando = atof(t);
-        while(testa_tipos(j)){t++;}
+        while(testa_tipos(t)){t++;}
         
         }
 
@@ -121,14 +119,19 @@ double results(char operacao, Pilha *n, Pilha *c, Data_t ins, Data_t t, char *tm
     return -1;
 }
 
-double le_string(Pilha* n, Pilha* c, Data_t t, char *exp){
-    
+double le_string(char *exp){
+
+    printf("problema aq");
     Data_t ins;
+    Pilha* n = pilha_cria();
+    Pilha* c = pilha_cria();
+    Data_t t;
+    printf("chega aq");
     ins.operador = '&';
     pilha_push(c, ins);
     char *tmp = exp;
     t = fraciona_exp(&tmp);
-
+    
     while(1){
       if(t.operador == ' ') {
                 t = fraciona_exp(&tmp);
@@ -148,5 +151,5 @@ double le_string(Pilha* n, Pilha* c, Data_t t, char *exp){
                 t = fraciona_exp(&tmp);
             }
         }
-        return 10;
+    return 10;
 }

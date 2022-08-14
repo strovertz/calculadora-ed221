@@ -28,6 +28,7 @@ char opera_ou_empilha(char operador_topo, char entrada){
 Pilha* pilha_cria (){
     Pilha* p = (Pilha*) malloc(sizeof (Pilha));
     p-> prim = NULL;
+    printf("loopa aki");
     return p;
 }
 

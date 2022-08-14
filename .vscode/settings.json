@@ -1,6 +1,8 @@
 {
     "cmake.configureOnOpen": false,
     "files.associations": {
-        "pilha.h": "c"
+        "pilha.h": "c",
+        "interface.h": "c",
+        "stdlib.h": "c"
     }
 }
