@@ -14,7 +14,8 @@ struct lista {
 struct pilha{
     Lista *prim;
 };
-
+// retorna a decição de operar ou empilhar operador/operando varrendo a matriz e verificando a precedência de cada char inserido
+char opera_ou_empilha(char operador_topo, char entrada);
 // cria uma pilha vazia
 Pilha* pilha_cria ();
 //empilha dado v no topo da pilha p

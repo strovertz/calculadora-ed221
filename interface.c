@@ -6,36 +6,14 @@
 #include "interface.h"
 #define TM_EXP 60;
 
-char opera_ou_empilha(char operador_topo, char entrada){
-    char operacoes[8][9] = {{'.','+','-','*','/','^','(',')','\n'},
-                            {'+','o','o','e','e','e','e','o','o'},
-                            {'-','o','o','e','e','e','e','o','o'},
-                            {'*','o','o','o','o','e','e','o','o'},
-                            {'/','o','o','o','o','e','e','o','o'},
-                            {'^','o','o','o','o','e','e','o','o'},
-                            {'$','e','e','e','e','e','e','s','a'},
-                            {'(','e','e','e','e','e','e','c','f'}};
-    int x, y;
-
-    for (int j = 0; j < 8; j=j) {
-        if (entrada == operacoes[j][0]) x = j;
-        }
-
-    for (int j = 0; j < 8; j++) {
-        if(operador_topo == operacoes[0][j]) y = j;
-        }
-    printf("Empilha ou Opera: %c", operacoes[x][y]);
-    return operacoes[x][y];
-}
-
 char* aloca_temp() {
-    char* tmp = malloc(2*sizeof(char));
+    char* tmp = malloc(200*sizeof(char));
     return tmp;
 }
 
-double calculadora(double num1, double num2, char operador)
+double calculadora(double num1, double num2, char op)
 {
-    switch (operador) {
+    switch (op) {
     case '+':
         return num2 + num1;
         break;
@@ -52,22 +30,22 @@ double calculadora(double num1, double num2, char operador)
         return pow(num1, num2);
         break;
     default:
-        printf("operador %c desconhecido", operador);
+        printf("Tem besteira aqui ein: %c ", op);
         exit(1);
     }
 }
 
-
 Data_t calculo(Pilha *n, char op){
 
-    Data_t *result;
+    Data_t result;
     double uno, dos;
 
     uno = pilha_pop(n).operando;
     dos = pilha_pop(n).operando;
 
-    result->operando = calculadora(uno, dos, op);
-
+    result.operando = calculadora(uno, dos, op);
+    //printf("teste: %lf", result.operando);
+    return result;
 }
 bool testa_tipos(char t){
     int j = t;
@@ -77,84 +55,98 @@ bool testa_tipos(char t){
 
 Data_t fraciona_exp(char **string){
     Data_t atm;
-    char *t;
+    char *t = malloc(sizeof(*string));
     strcpy(t, *string);
     char j;
     j = t[0];
-    if (testa_tipos(j) == true){atm.type = true; atm.operando = atof(t); while(testa_tipos(j))t++;}
+    if (testa_tipos(j) == true){
+        atm.type = true; 
+        atm.operando = atof(t);
+        while(testa_tipos(j)){t++;}
+        
+        }
+
     else{atm.type = false; atm.operador = t[1]; t++;}
 
     strcpy(*string, t);
     return atm;
 }
 
-double le_string(Pilha* n, Pilha* c, Data_t t){
+double results(char operacao, Pilha *n, Pilha *c, Data_t ins, Data_t t, char *tmp) {
+    switch (operacao) {
+        case 'a':
+            if(pilha_vazia(n)) {
+                printf("Erro: pilha vazia");
+                exit(32);
+            }
+
+            double res = pilha_pop(n).operando;
+            
+            if(!pilha_vazia(n)) {
+                printf("Falta operador \n");
+                exit(1);
+            }
+            printf("%lf", res);
+            return res;
+        
+            pilha_libera(n);
+            pilha_libera(c);
+            break;
+        
+        case 'o':
+            pilha_push(n, calculo(n, pilha_pop(c).operador));
+            break;
+        case 'e': 
+            pilha_push(c, t);
+            t = fraciona_exp(&tmp);
+            break;
+        case 'f':
+            printf("Vai fechar esse parenteses \n");
+            break;
+        
+        case 'c':
+            char *parenteses_final = malloc(sizeof(char));
+            parenteses_final[0] = pilha_pop(c).operador;
+            free(parenteses_final);                    
+            t = fraciona_exp(&tmp);
+        
+        case 'p':
+            printf("Problema com parenteses aberto ou nao\n");
+            break;
+        
+        default:
+            t = fraciona_exp(&tmp);
+            break;
+    }
+    return -1;
+}
+
+double le_string(Pilha* n, Pilha* c, Data_t t, char *exp){
     
     Data_t ins;
     ins.operador = '&';
     pilha_push(c, ins);
-    char *tmp = aloca_temp();
-    strcpy(tmp, "10*5/2^4*(2-1)");
+    char *tmp = exp;
     t = fraciona_exp(&tmp);
 
-    while(!pilha_vazia(c)){
+    while(1){
       if(t.operador == ' ') {
                 t = fraciona_exp(&tmp);
             }
-            if(t.type == true) {
+            if(t.type) {
                 pilha_push(n, t);
                 t = fraciona_exp(&tmp);
             
-            } else if(t.type == false){
+            } else if(!t.type){
                 if(t.operador == ' ') {
                     t = fraciona_exp(&tmp);
                 }
                 char operacao = opera_ou_empilha(t.operador, pilha_topo(c).operador);
-                if(operacao == 'a'){
-                    if(pilha_vazia(n)) {
-                        printf("erro de falta de resposta\n");
-                        exit(1);
-                    }
-    
-                    double res = pilha_pop(n).operando;
-                    
-                    if(!pilha_vazia(n)) {
-                        printf("erro de falta de operadores\n");
-                        exit(1);
-                    }
-                    printf("%lf", res);
-                    return res;
-                
-                    pilha_libera(n);
-                    pilha_libera(c);
-                    break;
-                
-                } else if(operacao == 'o'){
-                    pilha_push(n, calculo(n, pilha_pop(c).operador));
-                
-                } else if(operacao == 'e'){
-                    pilha_push(c, t);
-                    t = fraciona_exp(&tmp);
-                
-                } else if(operacao == 'f'){
-                    printf("Falta um ) nos operadores\n");
-                    break;
-                
-                } else if(operacao == 'c'){
-                    char removido = pilha_pop(c).operador;
-                    t = fraciona_exp(&tmp);
-                
-                } else if(operacao == 'p'){
-                    printf("Falta um ( nos operadores\n");
-                    break;
-                
-                } else{
-                    t = fraciona_exp(&tmp);
-                }
-            
+                results(operacao, n, c, ins, t, tmp);
+
             } else{
                 t = fraciona_exp(&tmp);
             }
         }
-
+        return 10;
 }

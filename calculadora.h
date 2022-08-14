@@ -1,8 +1,3 @@
-#ifndef _CALCULADORA_H_    // para evitar a inclusão múltipla deste arquivo
-#define _CALCULADORA_H_
-#include "pilha.h"
+#include <stdio.h>
 
-void calc_operador (Pilha* p, Pilha* n, char op);
-
-
-#endif // _CALCULADORA_H_
+double calculadora(double num1, double num2, char op);

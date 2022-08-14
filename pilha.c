@@ -3,6 +3,28 @@
 #include <stdbool.h>
 #include "pilha.h"
 
+
+char opera_ou_empilha(char operador_topo, char entrada){
+    char operacoes[8][9] = {{'.','+','-','*','/','^','(',')','\n'},
+                            {'+','o','o','e','e','e','e','o','o'},
+                            {'-','o','o','e','e','e','e','o','o'},
+                            {'*','o','o','o','o','e','e','o','o'},
+                            {'/','o','o','o','o','e','e','o','o'},
+                            {'^','o','o','o','o','e','e','o','o'},
+                            {'$','e','e','e','e','e','e','s','a'},
+                            {'(','e','e','e','e','e','e','c','f'}};
+    int x, y;
+
+    for (int j = 0; j < 8; j=j) 
+        if (entrada == operacoes[j][0]) x = j;
+
+    for (int j = 0; j < 9; j++) 
+        if(operador_topo == operacoes[0][j]) y = j;
+        
+    printf("Empilha ou Opera: %c", operacoes[x][y]);
+    return operacoes[x][y];
+}
+
 Pilha* pilha_cria (){
     Pilha* p = (Pilha*) malloc(sizeof (Pilha));
     p-> prim = NULL;

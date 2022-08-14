@@ -4,10 +4,11 @@
 
 int main (void) {
     while (1){
-        Pilha* num = pilha_cria();
-        Pilha* shar = pilha_cria();
+        Pilha* n = pilha_cria();
+        Pilha* c = pilha_cria();
         Data_t t;
-        printf("teste");
-        le_string(num, shar, t);
+        char *exp = aloca_temp();
+        fgets(exp, 195, stdin);
+        printf("Resultado: %lf", le_string(n, c, t, exp));
     }
 }
