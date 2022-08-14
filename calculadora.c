@@ -30,13 +30,12 @@ char opera_ou_empilha(char operador_topo, char entrada){
     return operacoes[x][y];
 }
 
-void calc_operando (Pilha* p, char v[10]){
+void calc_operando (Pilha* p, char v){
 
-    float x;
-    char c = 't';
+    float uno, dos;
+    //char c = 't'; apenas para teste, caso eu esqueça, ignorar
 
-    x = atof(v);
-    pilha_push(p, c, x); ///∗ empilha operando ∗/
+    pilha_libera; ///∗ empilha operando ∗/
 
     printf("%f", p->prim->operando); ///∗ imprime topo da p i l h a ∗/
 

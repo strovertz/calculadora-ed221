@@ -3,11 +3,11 @@
    // o tipo d dados data_t
 typedef struct data_t Data_t;
 
-typedef struct data_t  {
-
-    float operando;
-    char* operador;
+struct data_t  {
+    bool type; // 1 se for operando, 0 se for operador
+    double operando;
+    char operador;
     Data_t* prox;
-} Data_t;
+};
 
 #endif // _DATA_H_

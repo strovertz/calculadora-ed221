@@ -1,5 +1,6 @@
-#include "calculadora.h"
+#include "pilha.h"
 
-void le_string(Pilha* num, Pilha* shar);
+double le_string(Pilha* n, Pilha* c, Data_t t);
+
 
 

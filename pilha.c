@@ -4,34 +4,25 @@
 #include "pilha.h"
 
 Pilha* pilha_cria (){
-
     Pilha* p = (Pilha*) malloc(sizeof (Pilha));
-
     p-> prim = NULL;
-
     return p;
 }
 
-void pilha_push(Pilha* p, char v, float x) {
-    Data_t* n = (Data_t*) malloc(sizeof(Data_t));
-    n = p->prim;
-    n->operador = malloc(1*sizeof(char));
-    if (n->operador == NULL) n->operando = x;
-    else n->operador[0] = v;
-    n-> prox = p-> prim;
-    p-> prim = n;
+Data_t pilha_topo(Pilha *p) {
+    return p->prim->dado;
 }
 
-float pilha_pop (Pilha* p) {
-    Data_t *t = p->prim;
-    float v;
-    char op;
-    if (t->operador != NULL) op = t->operador[0];
-    else v = t->operando;
+void pilha_push(Pilha* p, Data_t x) {
+    Lista* n = (Lista*) malloc(sizeof(Lista));
+    if(n) {n->dado = x; n->prox = p->prim; p->prim = n;} 
+    else return;
+}
+
+Data_t pilha_pop (Pilha* p) {
+    Lista *t = p->prim;
     p->prim = t->prox;
-    free(t);
-    if (v < 0 || v > 10000) return op;
-    else return v;
+    return t->dado;
 }
 
 bool pilha_vazia(Pilha* p) {
@@ -40,18 +31,17 @@ bool pilha_vazia(Pilha* p) {
 }
 
 void pilha_libera (Pilha *p) {
-    Data_t * q = p->prim;
+    Lista *q = p->prim;
     while(q != NULL) {
-        Data_t * t = q->prox;
+        Lista *t = q->prox;
         free(q);
         q = t;
     }
+    free(p);
 }
 
-void pilha_imprime(Pilha *p) {
+/*void pilha_imprime(Pilha *p) {
     for (Data_t * q=p->prim; q != NULL; q=q->prox) {
         printf("%c\n", q->operador[0]);
     }
-}
-
-
+}*/ // rascunho p testes caso eu esqueça de apagar, favor desconsiderar
